@@ -31,6 +31,19 @@ public class CousinsBinaryTree {
     }
 
     private static void printGivenLevelExceptSibling(TreeNode root, TreeNode target, int level) {
-
+        if (root == null || level < 2) return;
+        // Check if target is child of this node
+        if (level == 2) {
+            if ((root.left == target) || (root.right == target)) {
+                // This is parent of target, so skip
+                return;
+            }
+            if (root.left != null) System.out.print(root.left.data + " ");
+            if (root.right != null) System.out.print(root.right.data + " ");
+        } else {
+            // Recurse for next level
+            printGivenLevelExceptSibling(root.left, target, level - 1);
+            printGivenLevelExceptSibling(root.right, target, level - 1);
+        }
     }
 }
