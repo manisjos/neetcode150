@@ -11,7 +11,7 @@ public class CousinsBinaryTree {
         root.right.left = new TreeNode(6);
 
         TreeNode target = root.left.right;
-        System.out.print("Cousins of node " + target.data + " ");
+        System.out.print("Cousins of node " + target.data + " is :");
         printCousins(root, target);
     }
 
