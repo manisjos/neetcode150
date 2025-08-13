@@ -9,7 +9,7 @@ public class LongestSubArr {
 
     private static int maxSubArr(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
-        map.put(0,-1);
+        map.put(0,-1);  // to handle case when subarray starts from index 0
         int sumSoFar = 0, maxLen = 0;
         for (int i=0;i< nums.length;i++){
             sumSoFar = sumSoFar + nums[i];
