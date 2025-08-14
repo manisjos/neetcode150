@@ -10,13 +10,6 @@ public class TOP_K_LC347 {
 
     public static ArrayList<Integer> topKFrequent_Naive(int[] nums, int rank) {
         Map<Integer, Integer> map = new HashMap<>();
-        int count=0;
-//        for (int i = 0; i < nums.length; i++) {
-//            if(map.containsKey(nums[i])){
-//              map.put(nums[i],map.get(nums[i])+1);
-//            }
-//            map.put(nums[i], 1);
-//        }
         for (int num: nums){
             map.put(num,map.getOrDefault(num,0)+1);
         }
