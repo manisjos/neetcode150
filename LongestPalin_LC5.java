@@ -9,8 +9,8 @@ public class LongestPalin_LC5 {
         int start = 0, end = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            int len1 = expandFromCenter(s, i, i); // odd
-            int len2 = expandFromCenter(s, i, i + 1); // even
+            int len1 = expandFromCenter(s, i, i); // odd  -- like passing index 0 i.e b
+            int len2 = expandFromCenter(s, i, i + 1); // even  -- like passing index 1 i.e a
             int len = Math.max(len1, len2);
             if (len > end - start) {
                 start = i - (len - 1) / 2;
