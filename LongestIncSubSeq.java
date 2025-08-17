@@ -35,7 +35,7 @@ public class LongestIncSubSeq {
         int dp[] = new int[n];
         int maxLen=1;
 
-        Arrays.fill(dp,1);
+        Arrays.fill(dp,1); // fills the entire array with 1
         for (int i=1;i<n;i++){
             for (int j=0;j<i;j++){
                 if(nums[j]<nums[i]){

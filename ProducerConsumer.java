@@ -42,15 +42,15 @@ public class ProducerConsumer {
             }
         });
 
-        Thread consumer = new Thread(()->{
-           for (int i=1;i<=10;i++){
-               try {
-                   consume();
-                   Thread.sleep(150);
-               } catch (InterruptedException e) {
-                   throw new RuntimeException(e);
-               }
-           }
+        Thread consumer = new Thread(() -> {
+            for (int i = 1; i <= 10; i++) {
+                try {
+                    consume();
+                    Thread.sleep(150);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
         producer.start();
         consumer.start();
