@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class LongestSubstrNonRep {
+public class LC3_LongestSubstrNonRep {
     public static void main(String[] args) {
         System.out.println(lengthOfLongestSubstring("abcabcbb")); // 3
     }
