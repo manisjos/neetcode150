@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class TOP_K_LC347 {
+public class LC347_TOP_K {
     public static void main(String[] args) {
         System.out.println("Via Naive Approach");
         System.out.println((topKFrequent_Naive(new int[]{1,1,1,2,2,3},2)));

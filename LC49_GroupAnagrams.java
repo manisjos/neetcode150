@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class GroupAnagrams_LC49 {
+public class LC49_GroupAnagrams {
     public static void main(String[] args) {
         String[] input = {"eat", "tea", "tan", "ate", "nat", "bat"};
         List<List<String>> result = groupAnagrams(input);

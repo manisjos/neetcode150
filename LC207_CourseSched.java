@@ -1,8 +1,7 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseSched_LC207 {
+public class LC207_CourseSched {
     public static void main(String[] args) {
         int numCourses = 2;
         int preReq[][] = {{1, 0}};

@@ -1,6 +1,6 @@
 import java.util.PriorityQueue;
 
-public class KthLargetst_LC215 {
+public class LC215_KthLargetst {
 
     public static void main(String[] args) {
         int[] arr = {12, 3, 5, 7, 19};

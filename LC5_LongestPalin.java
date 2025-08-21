@@ -1,4 +1,4 @@
-public class LongestPalin_LC5 {
+public class LC5_LongestPalin {
     public static void main(String[] args) {
         System.out.println(longestPalindrome("babad")); // "bab" or "aba"
         System.out.println(longestPalindrome("cbbd"));  // "bb"

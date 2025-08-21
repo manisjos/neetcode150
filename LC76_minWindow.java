@@ -1,4 +1,4 @@
-public class minWindow_LC76 {
+public class LC76_minWindow {
     public static void main(String[] args) {
         System.out.println(minWindow("ADOBECODEBANC","ABC"));
     }
