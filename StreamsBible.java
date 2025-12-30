@@ -1,6 +1,7 @@
 import jdk.jfr.Frequency;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -85,6 +86,15 @@ public class StreamsBible {
         System.out.println("Printing all employees with 2nd High Sal: ");
         secHighEmps.ifPresent(x->x.forEach(System.out::println));
 
+        Comparator<Employee> comparingBySal = Comparator.comparing(Employee::getRole);
+
+        Map<String, Optional<Employee>> empName = employees.stream()
+                .collect(
+                        Collectors.groupingBy
+                                (Employee::getDepartment, Collectors.reducing(BinaryOperator.maxBy(comparingBySal))));
+
+        System.out.println("\n Departmentwise High Salary "+empName);
+
         Map<Integer,Employee> map =
                 employees.stream().collect(Collectors.toMap(
                         Employee::getId,
@@ -107,5 +117,18 @@ public class StreamsBible {
         System.out.println("\n\n");
         System.out.println("group employees names by department");
         System.out.println(deptMap1);
+
+
+        String input= "swasti hitesh joshi";
+        Map<String,Long> countMap =
+        Arrays.stream(input.split("")).filter(x->!x.equals(" "))
+                .collect(
+                    Collectors.groupingBy(
+                            Function.identity(),
+                            Collectors.counting()
+                    )
+                );
+        System.out.println(countMap);
+
     }
 }
