@@ -77,6 +77,9 @@ public class Order {
         Order order
                 = new Order.Builder().setId(123)
                 .setCustomerName("Sini John").setShippingAddress("Liverpool Street").build();
+        Order order1
+                = new Order.Builder().setId(123).setShippingAddress("aws").build();
         System.out.println("Order Id: "+order.getId()+" and Customer Name: "+order.getCustomerName());
+        System.out.println("Order Id: "+order1.getId()+" and Customer Name: "+order1.getCustomerName());
     }
 }
