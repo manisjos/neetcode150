@@ -7,7 +7,14 @@ public class LC32_LongestValidParen {
 //        Output: 4
 //        Explanation: The longest valid parentheses substring is "()()".
         System.out.println("Longest valid: " + longestValidParentheses("(()"));
-        ;
+        System.out.println("If chess board is black or white (true/false): "+squareIsWhite("a1"));;
+        System.out.println("If chess board is black or white (true/false): "+squareIsWhite("a2"));;
+        System.out.println("If chess board is black or white (true/false): "+squareIsWhite("b4"));;
+        System.out.println("If chess board is black or white (true/false): "+squareIsWhite("a7"));;
+    }
+
+    public static boolean squareIsWhite(String coords) {
+        return (coords.charAt(0)+coords.charAt(1)) % 2 == 1;
     }
 
     public static int longestValidParentheses(String s) {
