@@ -2,7 +2,7 @@ import java.util.Stack;
 
 public class LC20_ValidParanthesis {
     public static void main(String[] args) {
-        String[] ArrayOfParenthesis = {"(())", "())", "{}", "{{{}}}", ""};
+        String[] ArrayOfParenthesis = {"(())", "())", "{}", "{{{}}}", "))((",""};
         for (String Paran : ArrayOfParenthesis) {
             System.out.println("'" + Paran + "' is this valid ? " + isValid(Paran));
         }
