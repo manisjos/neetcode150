@@ -92,40 +92,94 @@ public class firstMissingNumber_LC41 {
         System.out.println(firstMissingPositiveOptimalV2(nums3)); // 3
     }
 
-    private static int firstMissingPositiveOptimalV2(int[] nums) {
+    static int firstMissingPositiveOptimalV2(int[] nums) {
+
         int len = nums.length;
+
+        // ----------------------------------------------------
+        // STEP 1: Check if number 1 exists in the array
+        // ----------------------------------------------------
+        // Because the smallest missing positive must be >= 1.
+        // If 1 is not present, we can immediately return 1.
         int contains = 0;
+
         for (int i = 0; i < len; i++) {
             if (nums[i] == 1) {
-                contains++;
+                contains = 1;
                 break;
             }
         }
+
         if (contains == 0) {
             return 1;
         }
+
+        // ----------------------------------------------------
+        // STEP 2: Clean the array
+        // ----------------------------------------------------
+        // Replace all numbers that are:
+        //   <= 0 (negative / zero)
+        //   > len (out of useful range)
+        // with 1.
+        //
+        // After this step, every element is in range [1, len].
         for (int i = 0; i < len; i++) {
             if (nums[i] <= 0 || nums[i] > len) {
                 nums[i] = 1;
             }
         }
+
+        // ----------------------------------------------------
+        // STEP 3: Mark presence using index as hash
+        // ----------------------------------------------------
+        // We use array indices to record which numbers exist.
+        //
+        // For each value "a":
+        //   - Mark index "a" as negative (means: a is present)
+        //   - Special case: if a == len, mark index 0
+        //
+        // We use Math.abs() because values may already be negative.
         for (int i = 0; i < len; i++) {
+
             int a = Math.abs(nums[i]);
+
+            // If value equals array length,
+            // mark index 0 (special handling)
             if (a == len) {
                 nums[0] = -Math.abs(nums[0]);
-            } else {
+            }
+            // Otherwise mark index = a
+            else {
                 nums[a] = -Math.abs(nums[a]);
             }
         }
+
+        // ----------------------------------------------------
+        // STEP 4: Find first positive index
+        // ----------------------------------------------------
+        // If nums[i] is still positive,
+        // it means number "i" was never seen.
+        //
+        // So i is the missing number.
         for (int i = 1; i < len; i++) {
             if (nums[i] > 0) {
                 return i;
             }
         }
+
+        // ----------------------------------------------------
+        // STEP 5: Check for number = len
+        // ----------------------------------------------------
+        // If index 0 is positive,
+        // then number "len" is missing.
         if (nums[0] > 0) {
             return len;
         }
-        return len + 1;
 
+        // ----------------------------------------------------
+        // STEP 6: All numbers 1..len are present
+        // ----------------------------------------------------
+        // So answer is len + 1.
+        return len + 1;
     }
 }
