@@ -82,15 +82,50 @@ public class firstMissingNumber_LC41 {
 
         int[] nums3 = {1, 2, 0};
         System.out.println(firstMissingPositiveHMApproach(nums3)); // 3
-
-
         System.out.println("== Via Optimal Approach ==");
-
-
         System.out.println(firstMissingPositiveOptimal(nums1)); // 2
-
         System.out.println(firstMissingPositiveOptimal(nums2)); // 1
-
         System.out.println(firstMissingPositiveOptimal(nums3)); // 3
+        System.out.println("== Via Optimal Approach v2 ==");
+        System.out.println(firstMissingPositiveOptimalV2(nums1)); // 2
+        System.out.println(firstMissingPositiveOptimalV2(nums2)); // 1
+        System.out.println(firstMissingPositiveOptimalV2(nums3)); // 3
+    }
+
+    private static int firstMissingPositiveOptimalV2(int[] nums) {
+        int len = nums.length;
+        int contains = 0;
+        for (int i = 0; i < len; i++) {
+            if (nums[i] == 1) {
+                contains++;
+                break;
+            }
+        }
+        if (contains == 0) {
+            return 1;
+        }
+        for (int i = 0; i < len; i++) {
+            if (nums[i] <= 0 || nums[i] > len) {
+                nums[i] = 1;
+            }
+        }
+        for (int i = 0; i < len; i++) {
+            int a = Math.abs(nums[i]);
+            if (a == len) {
+                nums[0] = -Math.abs(nums[0]);
+            } else {
+                nums[a] = -Math.abs(nums[a]);
+            }
+        }
+        for (int i = 1; i < len; i++) {
+            if (nums[i] > 0) {
+                return i;
+            }
+        }
+        if (nums[0] > 0) {
+            return len;
+        }
+        return len + 1;
+
     }
 }
