@@ -28,6 +28,7 @@ public class firstMissingNumber_LC41 {
         return -1; // never reached
     }
 
+    //most efficient approach - firstMissingPositiveOptimal
     static int firstMissingPositiveOptimal(int[] nums) {
         // each number x should be at x-1 index
         // for eg number 1 should be at 0 index
@@ -63,33 +64,6 @@ public class firstMissingNumber_LC41 {
             }
         }
         return n + 1;
-    }
-
-    static void swap(int arr[], int i, int j) {
-        int t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
-    }
-
-    // For testing
-    public static void main(String[] args) {
-
-        int[] nums1 = {3, 4, -1, 1};
-        System.out.println(firstMissingPositiveHMApproach(nums1)); // 2
-
-        int[] nums2 = {7, 8, 9, 11, 12};
-        System.out.println(firstMissingPositiveHMApproach(nums2)); // 1
-
-        int[] nums3 = {1, 2, 0};
-        System.out.println(firstMissingPositiveHMApproach(nums3)); // 3
-        System.out.println("== Via Optimal Approach ==");
-        System.out.println(firstMissingPositiveOptimal(nums1)); // 2
-        System.out.println(firstMissingPositiveOptimal(nums2)); // 1
-        System.out.println(firstMissingPositiveOptimal(nums3)); // 3
-        System.out.println("== Via Optimal Approach v2 ==");
-        System.out.println(firstMissingPositiveOptimalV2(nums1)); // 2
-        System.out.println(firstMissingPositiveOptimalV2(nums2)); // 1
-        System.out.println(firstMissingPositiveOptimalV2(nums3)); // 3
     }
 
     static int firstMissingPositiveOptimalV2(int[] nums) {
@@ -182,4 +156,33 @@ public class firstMissingNumber_LC41 {
         // So answer is len + 1.
         return len + 1;
     }
+
+    static void swap(int arr[], int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+    // For testing
+    public static void main(String[] args) {
+
+        int[] nums1 = {3, 4, -1, 1};
+        System.out.println(firstMissingPositiveHMApproach(nums1)); // 2
+
+        int[] nums2 = {7, 8, 9, 11, 12};
+        System.out.println(firstMissingPositiveHMApproach(nums2)); // 1
+
+        int[] nums3 = {1, 2, 0};
+        System.out.println(firstMissingPositiveHMApproach(nums3)); // 3
+        System.out.println("== Via Optimal Approach ==");
+        System.out.println(firstMissingPositiveOptimal(nums1)); // 2
+        System.out.println(firstMissingPositiveOptimal(nums2)); // 1
+        System.out.println(firstMissingPositiveOptimal(nums3)); // 3
+        System.out.println("== Via Optimal Approach v2 ==");
+        System.out.println(firstMissingPositiveOptimalV2(nums1)); // 2
+        System.out.println(firstMissingPositiveOptimalV2(nums2)); // 1
+        System.out.println(firstMissingPositiveOptimalV2(nums3)); // 3
+    }
+
+
 }
