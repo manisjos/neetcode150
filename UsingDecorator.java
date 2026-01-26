@@ -8,6 +8,6 @@ public class UsingDecorator {
                                 )
                         )
                 );
-        service.pay(100);
+        service.pay(-1);
     }
 }

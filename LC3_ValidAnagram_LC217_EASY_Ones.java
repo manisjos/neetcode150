@@ -4,7 +4,7 @@ public class LC3_ValidAnagram_LC217_EASY_Ones {
     public static void main(String[] args) {
         String string1="anagram", string2="nagaram";
         System.out.println("Are the strings Angram ? "+isTheseTwoAnagrams(string1, string2));
-        System.out.println("Are there duplicates in the input array [1,2,3,1] ? "+containsDuplicate(new int[]{1,2,3,1}));
+        System.out.println("Are there duplicates in the input array   ? "+containsDuplicate(new int[]{1,2,3,4}));
     }
     private static boolean isTheseTwoAnagrams(String string1, String string2) {
         int OneLen = string1.length(), TwoLen=string2.length();
