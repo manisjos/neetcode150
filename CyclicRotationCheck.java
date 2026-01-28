@@ -6,7 +6,7 @@ import java.util.List;
 public class CyclicRotationCheck {
     public static void main(String[] args) {
         Integer a[] = {1, 2, 3, 4, 5};
-        Integer b[] = {3, 4, 5, 1, 2};
+        Integer b[] = {3, 4, 5, 1, 4};
         System.out.println("isRotation: " + isRotation(a, b));
     }
 
