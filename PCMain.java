@@ -1,11 +1,15 @@
 public class PCMain {
     public static void main(String[] args) {
 
-        Parent p = new Parent();
-        p.show();
-
         Parent p11 = new Child();
-        p11.Character();
+//        Parent constructor runs first.
+        p11.show();
+        System.out.println("Value comes from Parent for x : "+p11.x);
+//        Why?
+//        Member	===> Decided By
+//        Variable  ===> Reference type
+//        Method	===> Object type
+//
 
         Parent p21 = new Child();
 //        the below dosent work
@@ -19,7 +23,7 @@ public class PCMain {
 
 
         Parent uc = new Parent();
-        Child c2 = (Child) uc;   // ❌ Runtime Error
+//        Child c2 = (Child) uc;   // ❌ Runtime Error
         // Parent cant replace child (it may own attributes, unknown to parent)
 
         // static method - where is it stoed ?

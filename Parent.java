@@ -1,4 +1,9 @@
 public class Parent {
+
+    Parent(){
+        System.out.println("Parent Constructor Ran!!");
+    }
+    int x=10;
     void show(){
         System.out.println("Show from Parent");
     }

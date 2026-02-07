@@ -14,16 +14,23 @@ public class SecondNonRepChar {
 
     private static void newStreamWay(String s, int k) {
         char resultChar =
-                s.chars().mapToObj(v->(char)v).collect(Collectors.groupingBy(
-                        Function.identity(),
-                        LinkedHashMap::new,
-                        Collectors.counting()
-                )).entrySet().stream().filter(x->x.getValue()==1)
-                                .map(Map.Entry::getKey)
-                                        .skip(k-1)
-                                                .findFirst()
-                                                        .orElse(null);
+                s.chars().mapToObj(v -> (char) v).collect(Collectors.groupingBy(
+                                Function.identity(),
+                                LinkedHashMap::new,
+                                Collectors.counting()
+                        )).entrySet().stream().filter(x -> x.getValue() == 1)
+                        .map(Map.Entry::getKey)
+                        .skip(k - 1)
+                        .findFirst()
+                        .orElse(null);
+        Character ress=
+        s.chars().mapToObj(x -> (char) x)
+                .collect(Collectors.groupingBy(Function.identity(),
+                        LinkedHashMap::new, Collectors.counting()))
+                .entrySet().stream().filter(x -> x.getValue() == 1)
+                .map(Map.Entry::getKey).skip(k - 1).findFirst().orElse(null);
         System.out.println("Kth Non Repeating char: " + resultChar);
+        System.out.println("Kth Non Repeating char: " + ress);
     }
 
     private static void oldWay(String s) {
