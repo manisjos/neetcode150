@@ -9,6 +9,12 @@ public class SeperateZeroOnes {
     }
 
     private static int[] oneTraversal(int[] arr) {
+
+//        Maintain two indexes. Initialize the first index left as 0 and second index right as n-1.
+//        Do following while lo < hi
+//...a) Keep incrementing index lo while there are 0s at it
+//...b) Keep decrementing index hi while there are 1s at it
+//...c) If lo < hi then exchange arr[lo] and arr[hi]
         int lo = 0, hi = arr.length - 1;
         while (lo < hi) {
             while (arr[lo] == 0 && lo < hi) lo++;
