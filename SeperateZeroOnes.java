@@ -4,8 +4,31 @@ public class SeperateZeroOnes {
     public static void main(String[] args) {
         int arr[] = {0, 1, 0, 1, 0, 0, 1, 1, 1, 0};
         int arr2[] = {0, 1, 0, 1, 0, 0, 1, 1, 1, 0};
+        int input[] = {0, 1, 0, 1, 0, 0, 1, 1, 1, 0};
         System.out.println("Naive : " + Arrays.toString(naiveSeperateIt(arr)));
-        System.out.println("Naive : " + Arrays.toString(oneTraversal(arr2)));
+        System.out.println("Optimal : " + Arrays.toString(oneTraversal(arr2)));
+        System.out.println("Optimal(Most Efficient) : " + Arrays.toString(oneTraversalME(input)));
+    }
+
+    static int[] oneTraversalME(int[] arr) {
+        int low = 0;
+        int high = arr.length - 1;
+        while (low < high) {
+            if (arr[low] == 1) {
+                if (arr[high] != 1) {
+                    int temp = arr[low];
+                    arr[low] = arr[high];
+                    arr[high] = temp;
+                    low++;
+                    high--;
+                } else {
+                    high--;
+                }
+            } else {
+                low++;
+            }
+        }
+        return arr;
     }
 
     private static int[] oneTraversal(int[] arr) {

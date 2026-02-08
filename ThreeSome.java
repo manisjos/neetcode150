@@ -4,7 +4,8 @@ import java.util.List;
 
 public class ThreeSome {
     public static void main(String[] args) {
-        int nums[] = {-1, 0, 1, 2, -1, -4};
+//        int nums[] = {-1, 0, 1, 2, -1, -4};
+        int nums[] = {1,2,1,1,1};
         System.out.println("Printing the 3 sum sub arrays: " + threeSum(nums));
     }
 

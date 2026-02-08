@@ -125,5 +125,36 @@ public class StreamsBibleV1 {
         // Logic: anyMatch is "short-circuiting"—it stops searching as soon as it finds one.
         boolean anyBarcelona = employees.stream().anyMatch(e -> "Barcelona".equals(e.getDepartment()));
         System.out.println("Q12 (Any Barcelona?): " + anyBarcelona);
+
+        // Q13: Convert employees to Map<Id, Name> (handle duplicates)
+        Map<Integer, String> empMap = employees.stream()
+                .collect(Collectors.toMap(
+                        Employee::getId,
+                        Employee::getName,
+                        (oldVal, newVal) -> oldVal // merge strategy
+                ));
+        System.out.println("Convert employees to Map<Id, Name> (handle duplicates) : " + empMap);
+
+        // Q14: Max salary using reduce
+        System.out.println("Max salary using reduce : ");
+        System.out.println(employees.stream().map(Employee::getSalary).reduce(0, Integer::max));
+
+
+        List<Employee> top3 = employees
+                .stream()
+                .sorted(Comparator.comparing(Employee::getSalary)
+                        .reversed())
+                .limit(3)
+                .collect(Collectors.toList());
+
+        System.out.println("Q15: Top 3 highest paid employees: " + top3);
+
+        // Q16: Group by Dept → Role
+        Map<String, Map<String, List<String>>> multiGroup =
+                employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+                                Collectors.groupingBy(Employee::getRole,
+                                Collectors.mapping(Employee::getName, Collectors.toList()))));
+        System.out.println("Q16: Group by Dept → Role: \n " + multiGroup);
+
     }
 }

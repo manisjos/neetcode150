@@ -28,11 +28,13 @@ public class MoveZerosProblem {
         int j = 0;
         for (int i = 0; i < l; i++) {
             if (arr[i] != 0) {
-                arr[j++] = arr[i];
+                arr[j] = arr[i];
+                j++;
             }
         }
         while (j < arr.length) {
-            arr[j++] = 0;
+            arr[j] = 0;
+            j++;
         }
         return arr;
     }
