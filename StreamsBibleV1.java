@@ -156,5 +156,33 @@ public class StreamsBibleV1 {
                                 Collectors.mapping(Employee::getName, Collectors.toList()))));
         System.out.println("Q16: Group by Dept → Role: \n " + multiGroup);
 
+
+        // Q17: Safely get highest salary
+        Optional<Integer> maxSal =
+                employees.stream()
+                        .map(Employee::getSalary)
+                        .max(Integer::compare);
+        System.out.println("Q17: Safely get highest salary - ");
+        maxSal.ifPresent(System.out::println);
+
+
+        // Q18: Parallel sum
+        int sum = nums.parallelStream()
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        System.out.println("Q18 Parallel sum : "+sum);
+
+
+        // Q19: Are all employees earning > 900?
+        boolean allHigh = employees.stream()
+                .allMatch(e -> e.getSalary() > 1800);
+
+        // Q20: No one earns < 500?
+        boolean noneLow = employees.stream()
+                .noneMatch(e -> e.getSalary() < 500);
+
+        System.out.println("Q19, Q20 -> all match: "+allHigh+ ", None Match: "+noneLow);
+
     }
 }
