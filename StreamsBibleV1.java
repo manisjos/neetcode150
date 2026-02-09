@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,6 +26,12 @@ public class StreamsBibleV1 {
                 .mapToObj(c -> (char) c)
                 .filter(c -> !Character.isWhitespace(c))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        // using Integer as a map value
+        Map<Character, Integer> charFreq1 = inputStr.chars()
+                .mapToObj(c -> (char) c)
+                .filter(c -> !Character.isWhitespace(c))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(c->1)));
         System.out.println("Q1 (Char Frequency): " + charFreq);
 
         // Q2: Find the first non-repeating character in a string.
@@ -67,7 +72,19 @@ public class StreamsBibleV1 {
         Map<String, Optional<Employee>> topPaidByDept = employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment,
                         Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
+        Map<String, String> topPaidByDept1 =
+                employees.stream()
+                        .collect(Collectors.groupingBy(
+                                Employee::getDepartment,
+                                Collectors.collectingAndThen(
+                                        Collectors.maxBy(Comparator.comparing(Employee::getSalary)),
+                                        opt -> opt.map(Employee::getName).orElse(null)
+                                )
+                        ));
+
+
         System.out.println("Q4 (Top Paid per Dept): " + topPaidByDept);
+        System.out.println("Q4.1 (Top Paid per Dept) - ONLY Name : " + topPaidByDept1);
 
         // Q5: Group all employee names by department.
         // Logic: mapping() transforms the stream element before it enters the list.
@@ -152,7 +169,7 @@ public class StreamsBibleV1 {
         // Q16: Group by Dept → Role
         Map<String, Map<String, List<String>>> multiGroup =
                 employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,
-                                Collectors.groupingBy(Employee::getRole,
+                        Collectors.groupingBy(Employee::getRole,
                                 Collectors.mapping(Employee::getName, Collectors.toList()))));
         System.out.println("Q16: Group by Dept → Role: \n " + multiGroup);
 
@@ -171,7 +188,7 @@ public class StreamsBibleV1 {
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        System.out.println("Q18 Parallel sum : "+sum);
+        System.out.println("Q18 Parallel sum : " + sum);
 
 
         // Q19: Are all employees earning > 900?
@@ -182,7 +199,14 @@ public class StreamsBibleV1 {
         boolean noneLow = employees.stream()
                 .noneMatch(e -> e.getSalary() < 500);
 
-        System.out.println("Q19, Q20 -> all match: "+allHigh+ ", None Match: "+noneLow);
+        System.out.println("Q19, Q20 -> all match: " + allHigh + ", None Match: " + noneLow);
+
+        Map<String, Map<String, Integer>> salaryByDept =
+        employees.stream().collect(Collectors.groupingBy(
+                Employee::getDepartment,
+                Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.summingInt(Employee::getSalary))));
+        System.out.println("Q21 Salary by Dept: " + salaryByDept);
 
     }
 }
