@@ -1,10 +1,13 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 public class LC20_ValidParanthesis {
     public static void main(String[] args) {
-        String[] ArrayOfParenthesis = {"(())", "())", "{}", "{{{}}}", "))((",""};
+        String[] ArrayOfParenthesis = {"(())", "())", "{}", "{{{}}}", "))((", ""};
         for (String Paran : ArrayOfParenthesis) {
             System.out.println("'" + Paran + "' is this valid ? " + isValid(Paran));
+            System.out.println("'" + Paran + "' is this valid (using Dequeue) ? " + isValidDequeue(Paran));
         }
 //        System.out.println("Are the paranthesis valid ? "+isValid("Saw"));
         System.out.println("Simple Binary Search");
@@ -16,6 +19,23 @@ public class LC20_ValidParanthesis {
         System.out.println("Recursive Binary Search ==>" + search(inputArr, Target));
 
 
+    }
+
+    private static boolean isValidDequeue(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack.push(')');
+            } else if (c == '{') {
+                stack.push('}');
+            } else if (c == '[') {
+                stack.push(']');
+            } else if (stack.isEmpty() || stack.pop() != c) {
+                return false;
+            }
+        }
+        return stack.isEmpty();
     }
 
     public static int search(int[] nums, int target) {
