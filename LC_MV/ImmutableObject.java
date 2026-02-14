@@ -17,6 +17,7 @@ public final class ImmutableObject {
     public ImmutableObject(String name, int age, List<String> skills) {
         this.name = name;
         this.age = age;
+        //        this.skills = skills;  // ❌ BAD
         this.skills = new ArrayList<>(skills);
     }
 
@@ -28,6 +29,7 @@ public final class ImmutableObject {
         return age;
     }
     public List<String> getSkills(){
+        //        return skills;  // ❌ BAD
         return new ArrayList<>(skills);
     }
 }
