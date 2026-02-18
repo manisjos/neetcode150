@@ -1,7 +1,10 @@
+import java.util.Hashtable;
+
 public class MemoryDemo {
     // 1. STATIC FIELD: Stored in METASPACE (Class Metadata)
     // Shared by ALL instances of MemoryDemo.
     private static String appName = "InventorySystem";
+    Hashtable hs = new Hashtable();
 
     // 2. INSTANCE FIELD: Stored on HEAP
     // Each 'new MemoryDemo()' gets its own copy.

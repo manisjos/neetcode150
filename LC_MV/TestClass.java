@@ -13,6 +13,6 @@ public class TestClass {
         return this.getAge();
     }
 
-    default method(){}
+//    default method(){}
 
 }

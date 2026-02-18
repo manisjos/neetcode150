@@ -21,6 +21,11 @@ public final class ImmutableObject {
         this.skills = new ArrayList<>(skills);
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
     public String getName(){
         return name;
     }
