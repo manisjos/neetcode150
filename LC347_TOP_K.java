@@ -11,7 +11,8 @@ public class LC347_TOP_K {
     public static ArrayList<Integer> topKFrequent_Naive(int[] nums, int rank) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int num: nums){
-            map.put(num,map.getOrDefault(num,0)+1);
+//            map.put(num,map.getOrDefault(num,0)+1);
+            map.merge(num,1,Integer::sum);
         }
         ArrayList<int[]> freq = new ArrayList<>();
         // moving the o/p to array list of integer arrays
