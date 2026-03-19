@@ -11,6 +11,7 @@ public class LC3_LongestSubstrNonRep {
         System.out.println(lengthOfLongestSubStr(s)); // 3
         hashMapWay(s);
         mostOptimalWay(s);
+        lengthOfLongestSubstring(s);
     }
 
     private static void hashMapWay(String s) {
@@ -27,6 +28,21 @@ public class LC3_LongestSubstrNonRep {
             visitedCharMap.put(currentChar, rightPointer);
         }
         System.out.println("Max Len: " + maxLen);
+    }
+
+    static void lenOfLongHashMapWay(String s) {
+        Map<Character, Integer> visitedCharMap = new HashMap<>();
+        int maxLen = 0, leftPointer = 0;
+
+        for (int rightPointer = 0; rightPointer < s.length(); rightPointer++) {
+            char currChar = s.charAt(rightPointer);
+            if (visitedCharMap.containsKey(currChar) && visitedCharMap.get(currChar) >= leftPointer) {
+                leftPointer = visitedCharMap.get(currChar) + 1;
+            }
+            maxLen = Math.max(maxLen,rightPointer-leftPointer+1);
+            visitedCharMap.put(currChar,rightPointer);
+        }
+        System.out.println("Max Len 16: "+maxLen);
     }
 
     private static void mostOptimalWay(String s) {

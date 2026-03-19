@@ -1,6 +1,10 @@
 public class SimplePalindrome {
     public static void main(String[] args) {
         int n = 12321;
+        String s = "samas";
+
+
+
         if (isPalindrome(n)) {
             System.out.println("Yes");
         } else {
@@ -16,7 +20,7 @@ public class SimplePalindrome {
     }
 
     public static boolean isPalindrome(int n) {
-        if(n<0)
+        if (n < 0)
             return false;
         // comparing from mid and start
         String s = Integer.toString(Math.abs(n));
@@ -36,7 +40,7 @@ public class SimplePalindrome {
             reverse = (reverse * 10) + (temp % 10);
             temp = temp / 10;
         }
-        return (reverse==Math.abs(n));
+        return (reverse == Math.abs(n));
     }
 
 }

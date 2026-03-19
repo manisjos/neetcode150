@@ -31,7 +31,7 @@ public class StreamsBibleV1 {
         Map<Character, Integer> charFreq1 = inputStr.chars()
                 .mapToObj(c -> (char) c)
                 .filter(c -> !Character.isWhitespace(c))
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(c->1)));
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(c -> 1)));
         System.out.println("Q1 (Char Frequency): " + charFreq);
 
         // Q2: Find the first non-repeating character in a string.
@@ -179,7 +179,7 @@ public class StreamsBibleV1 {
                 employees.stream()
                         .map(Employee::getSalary)
                         .max(Integer::compare);
-        System.out.println("Q17: Safely get highest salary - ");
+        System.out.println("Q17: Highest salary using Max function (ifPresent) - ");
         maxSal.ifPresent(System.out::println);
 
 
@@ -202,11 +202,20 @@ public class StreamsBibleV1 {
         System.out.println("Q19, Q20 -> all match: " + allHigh + ", None Match: " + noneLow);
 
         Map<String, Map<String, Integer>> salaryByDept =
-        employees.stream().collect(Collectors.groupingBy(
-                Employee::getDepartment,
-                Collectors.groupingBy(Employee::getDepartment,
-                        Collectors.summingInt(Employee::getSalary))));
+                employees.stream().collect(Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.groupingBy(Employee::getDepartment,
+                                Collectors.summingInt(Employee::getSalary))));
         System.out.println("Q21 Salary by Dept: " + salaryByDept);
+
+        int salarySum =
+                employees.stream().map(Employee::getSalary).reduce((a, b) -> a + b).get();
+        System.out.println("Q22 Salary total (reduce showcase): " + salarySum);
+
+        int maxSalary =
+                employees.stream().map(Employee::getSalary).reduce((a, b) -> a > b ? a : b).get();
+        System.out.println("Q23 Maximum Salary (using reduce): " + maxSalary);
+
 
     }
 }

@@ -1,15 +1,30 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LC443_StringCompre {
     public static void main(String[] args) {
         char[] arr = {'a', 'a', 'b', 'b', 'c', 'c', 'c', 'a', 'a'};
 //        return 6 - since a2b2c3
+        System.out.println("Char Count: " + charCount(arr));
         System.out.println("Result: " + a2B3(arr));
         System.out.println("Result: " + stringCompareRes(arr));
         System.out.println("Result (cleanest and optimal): " + stringCompareGeminiWayNeat(arr));
+    }
+
+    static Map<Character, Integer> charCount(char[] input) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < input.length; i++) {
+            if (map.containsKey(input[i])) {
+                map.put(input[i], map.get(input[i]) + 1);
+            } else {
+                map.put(input[i], 1);
+            }
+        }
+        return map;
     }
 
     private static int stringCompareGeminiWayNeat(char[] arr) {
@@ -39,7 +54,7 @@ public class LC443_StringCompre {
 
             }
         }
-        System.out.println("Array: "+ Arrays.toString(arr));
+        System.out.println("Array: " + Arrays.toString(arr));
         return writeIdx;
     }
 
