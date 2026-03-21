@@ -105,7 +105,7 @@ public class LRUCache {
         // You're inserting the node between HEAD and the old first node
 //        HEAD <-> A <-> B, Insert new node X
         node.next = head.next; // 👉 X.next = A
-        node.prev = node; // 👉 X.prev = HEAD
+        node.prev = head; // 👉 X.prev = HEAD
 //        HEAD   A
 //          \  /
 //           X
