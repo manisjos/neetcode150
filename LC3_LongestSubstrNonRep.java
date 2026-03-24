@@ -9,9 +9,31 @@ public class LC3_LongestSubstrNonRep {
         String s = "abcabcbb";
         System.out.println(lengthOfLongestSubstring(s)); // 3
         System.out.println(lengthOfLongestSubStr(s)); // 3
+        System.out.println("HashSet way: "+lengthOfLongestSubStrHashSet(s)); // 3
         hashMapWay(s);
         mostOptimalWay(s);
         lengthOfLongestSubstring(s);
+    }
+
+    private static int lengthOfLongestSubStrHashSet(String s) {
+        int left = 0;
+        int maxLen = 0;
+        Set<Character> set = new HashSet<>();
+        // sliding window, shift window +1 (left++) if condition met
+
+        //        expand (right pointer)
+        //→ check condition
+        //→ if invalid → shrink (left pointer)
+        //→ update answer
+        for (int right = 0; right < s.length(); right++) {
+            while (set.contains(s.charAt(right))) {
+                set.remove(s.charAt(left));
+                left++;
+            }
+            set.add(s.charAt(right));
+            maxLen = Math.max(maxLen,right-left+1);
+        }
+        return maxLen;
     }
 
     private static void hashMapWay(String s) {
@@ -39,10 +61,10 @@ public class LC3_LongestSubstrNonRep {
             if (visitedCharMap.containsKey(currChar) && visitedCharMap.get(currChar) >= leftPointer) {
                 leftPointer = visitedCharMap.get(currChar) + 1;
             }
-            maxLen = Math.max(maxLen,rightPointer-leftPointer+1);
-            visitedCharMap.put(currChar,rightPointer);
+            maxLen = Math.max(maxLen, rightPointer - leftPointer + 1);
+            visitedCharMap.put(currChar, rightPointer);
         }
-        System.out.println("Max Len 16: "+maxLen);
+        System.out.println("Max Len 16: " + maxLen);
     }
 
     private static void mostOptimalWay(String s) {
