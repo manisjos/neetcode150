@@ -15,7 +15,12 @@ public class LC424 {
             count[s.charAt(right) - 'A']++;
             // keep track of most freq char in current window
             maxFrequency = Math.max(maxFrequency, count[s.charAt(right) - 'A']);
-            // if (window size - maxFreq) > k, we have too many replacements to make
+//            To make the whole window same:
+//            Keep the most frequent character as is
+//            Replace all others
+//
+//          👉 Number of replacements needed =
+//                    window size - maxFreq
             while ((right - left + 1) - maxFrequency > k) {
                 count[s.charAt(left) - 'A']--;
                 left++;
