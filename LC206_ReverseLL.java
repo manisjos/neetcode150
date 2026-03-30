@@ -9,6 +9,7 @@ public class LC206_ReverseLL {
         System.out.println("Printing before reversal");
         printList(head);
         ListNode reversed = reverseList(head);
+        System.out.println();
         System.out.println("Printing after reversal");
         printList(reversed);
     }
@@ -16,7 +17,7 @@ public class LC206_ReverseLL {
     public static void printList(ListNode head) {
         ListNode curr = head;
         while (curr != null) {
-            System.out.println(curr.val + " ");
+            System.out.print(curr.val + " >> ");
             curr = curr.next;
         }
     }
