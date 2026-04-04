@@ -14,7 +14,6 @@ public class LC234 {
 
     static void printLL(ListNode head) {
         ListNode curr = head;
-        curr = head;
         while (curr != null) {
             System.out.print(curr.val + ">> ");
             curr = curr.next;

@@ -17,6 +17,49 @@ public class LC141_CycleInLL {
         System.out.println("Does this LL has a Cycle 2 ? ");
         System.out.println(hasCycle(head2));
 
+        removeCycle(head2);
+
+        System.out.println("After removal does it have ? ");
+        System.out.println(hasCycle(head2));
+    }
+
+    private static void removeCycle(ListNode head) {
+        if (head == null || head.next == null) return;
+
+        ListNode slow = head;
+        ListNode fast = head;
+        boolean hasCycle = false;
+
+        // Step 1: Detect cycle
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                hasCycle = true;
+                break;
+            }
+        }
+
+        if (!hasCycle) return;
+
+        // Step 2: Find start of cycle
+        slow = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // Now both at cycle start
+
+        // Step 3: Find last node of cycle
+        while (fast.next != slow) {
+            fast = fast.next;
+        }
+
+        // Step 4: Break cycle
+        fast.next = null;
+
     }
 
     static boolean hasCycle(ListNode head) {
