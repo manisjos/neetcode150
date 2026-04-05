@@ -17,7 +17,7 @@ public class LC71_SubArrProdLessthenK {
         for (int right = 0; right < arr.length; right++) {
             product *= arr[right];
             while (product >= k) {
-                product /= arr[left]; // notice we are diving (removing left most element)
+                product /= arr[left]; // notice we are diving (since we removing left most element - to reduce our window and slide)
                 left++; // moving pointer ahead
             }
             count += (right - left + 1);
