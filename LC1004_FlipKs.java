@@ -18,7 +18,7 @@ public class LC1004_FlipKs {
 //                remove left element
 //                left++
 //            }
-            while (zeroCount > k) {
+            while (zeroCount > k) { // in case of invalidation - this will correct (Starting from 0)
                 if (arr[left] == 0) {
                     zeroCount--;
                 }
