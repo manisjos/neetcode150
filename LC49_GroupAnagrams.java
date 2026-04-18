@@ -1,10 +1,40 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LC49_GroupAnagrams {
     public static void main(String[] args) {
         String[] input = {"eat", "tea", "tan", "ate", "nat", "bat"};
         List<List<String>> result = groupAnagrams(input);
+        List<List<String>> resultUsingStream = groupAnaUsingStream(input);
         System.out.println(result);
+
+        System.out.println("Using Stream:");
+        System.out.println(resultUsingStream);
+    }
+
+    private static List<List<String>> groupAnaUsingStream(String[] input) {
+        List<List<String>> result = Arrays.stream(input).collect(Collectors.groupingBy(word -> {
+                    char[] chars = word.toCharArray();
+                    Arrays.sort(chars);
+                    return new String(chars);
+                }))
+                .values()
+                .stream()
+                .collect(Collectors.toList());
+
+
+        List<List<String>> result1 = Arrays.stream(input).collect(Collectors.groupingBy(word -> {
+                    int[] freq = new int[26];
+                    for (char c : word.toCharArray()) {
+                        freq[c - 'a']++;
+                    }
+                    return Arrays.toString(freq);
+                }))
+                .values()
+                .stream()
+                .collect(Collectors.toList());
+        System.out.println("Optimal way:" + result1);
+        return result;
     }
 
     private static List<List<String>> groupAnagrams(String[] input) {
