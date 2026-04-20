@@ -28,7 +28,7 @@ public class LC2596_KnightsMove {
         }
 
         // Step 2: Ensure the knight starts from top-left corner 0,0
-        if (positionMap[0][0] != 0 && positionMap[0][1] != 0) {
+        if (positionMap[0][0] != 0 || positionMap[0][1] != 0) {
             return false;
         }
 
