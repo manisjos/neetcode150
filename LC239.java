@@ -5,9 +5,19 @@ public class LC239 {
         int nums[] = {1, 3, -1, -3, 5, 3, 6, 7};
         int k = 3;
         System.out.println(Arrays.toString(maxSlidingWindowCostlyNaive(nums, k)));
+//        System.out.println(Arrays.toString(maxSlidingWindowMaxHeap(nums, k)));
     }
 
+//    private static int[] maxSlidingWindowMaxHeap(int[] nums, int k) {
+//
+//    }
+
     static int[] maxSlidingWindowCostlyNaive(int arr[], int windowSize) {
+        // too costly, time exceeds for this
+        //Time: O(n * k)
+        //Space: O(1)
+        //
+        //👉 Only okay when k is very small
         int totalNums = arr.length;
         int resultSize = totalNums - windowSize + 1;
         int[] maxValues = new int[resultSize];
