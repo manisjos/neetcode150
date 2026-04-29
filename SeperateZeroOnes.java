@@ -16,15 +16,21 @@ public class SeperateZeroOnes {
         while (low < high) {
             if (arr[low] == 1) {
                 if (arr[high] != 1) {
+                    // swap
                     int temp = arr[low];
                     arr[low] = arr[high];
                     arr[high] = temp;
-                    low++;
-                    high--;
+
+                    low++; // since swapped move the counter +1, low+1
+                    high--; // and high counter to -1, high-1
                 } else {
+                    // in this case the arrangement is as expected so we move the high --
+                    // and check the same in next iteration
                     high--;
                 }
             } else {
+                // in this case the arrangement is as expected so we move the low ++
+                // and check the same in next iteration
                 low++;
             }
         }
