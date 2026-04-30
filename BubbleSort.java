@@ -6,9 +6,27 @@ public class BubbleSort {
         int arr[] = {5, 8, 12, 1, 7};
         System.out.println(Arrays.toString(boobaSort(arr)));
         System.out.println(Arrays.toString(insertionSort(arr)));
+        System.out.println("Simple Bubble: "+Arrays.toString(simpleBubbleSort(arr)));
+    }
+
+    private static int[] simpleBubbleSort(int[] arr) {
+        // Compare every adjacent pair and bubble the max to the end
+        // Bubble Sort · O(n²) time, O(1) space
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) { // swap
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        return arr;
     }
 
     private static int[] insertionSort(int[] arr) {
+        // Insertion Sort · O(n²) worst, O(n) best, O(1) space
         int n = arr.length;
         for (int i = 1; i < n; i++) {
             int curr = arr[i];
