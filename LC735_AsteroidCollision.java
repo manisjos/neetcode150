@@ -3,7 +3,8 @@ import java.util.Stack;
 
 public class LC735_AsteroidCollision {
     public static void main(String[] args) {
-        int arr[] = {3, 5, -6, 2, -1, 4};
+//        int arr[] = {3, 5, -6, 2, -1, 4};
+        int arr[] = {10,2,1,-20};
         System.out.println(Arrays.toString(asteroidCollisioin(arr)));
     }
 
