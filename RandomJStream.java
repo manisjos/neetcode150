@@ -39,5 +39,45 @@ public class RandomJStream {
                 .orElse(null);
 
         System.out.println("First Non-Repeating Character -> "+result);
+
+
+        List<Employee> employees
+                = List.of(
+
+                new Employee("Ramos",2,1100,"Lead Defender","Real Madrid"),
+                new Employee("Beckham",1,1000,"Lead SE","Read Madrid"),
+                new Employee("Zizzou",5,1700,"Midfielder","Real Madrid"),
+                new Employee("Messi",6,1700,"Lead SE","Barcelona"),
+                new Employee("Xabi",2,1770,"CF","Barcelona")
+        );
+
+        // group emps by dept
+        Map<String,List<Employee>> group  = employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartment
+                ));
+
+        System.out.println("Group: "+group);
+
+
+        List<String> words = Arrays.asList("apple","banana","kiwi");
+        Map<String,Integer> wordLenMap = words.stream().collect(Collectors.toMap(
+                Function.identity(),
+                String::length
+        ));
+        System.out.println("Word Map : "+wordLenMap);
+
+        Optional<String> longest = words.stream()
+                .max(Comparator.comparing(String::length));
+        System.out.println("Longest: " +longest.orElse(null));
+
+        List<List<Integer>> nested = Arrays.asList(
+                Arrays.asList(1,2), Arrays.asList(3,4), Arrays.asList(5)
+        );
+        List<Integer> flattend = nested.stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+        System.out.println("Flatted: "+flattend);
+
     }
 }
