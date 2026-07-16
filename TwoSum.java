@@ -6,6 +6,7 @@ public class TwoSum {
         int[] nums = {2, 7, 11, 15};
         int target = 9;
         System.out.println(Arrays.toString(twoSum(nums, target)));
+        System.out.println(Arrays.toString(twoSumAgain(nums, target)));
     }
     public static int[] twoSum(int[] nums, int target){
         HashMap<Integer,Integer> map = new HashMap<>();
@@ -17,5 +18,16 @@ public class TwoSum {
             map.put(nums[i],i);
         }
         throw new IllegalArgumentException("No two sum solution");
+    }
+    static int[] twoSumAgain(int[] arr, int target){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (int i=0;i<arr.length;i++){
+            int complement = target - arr[i];
+            if(map.containsKey(complement)){
+                return new int[] {map.get(complement),i};
+            }
+            map.put(arr[i],i);
+        }
+        throw new IllegalArgumentException("No 2 sum solution");
     }
 }
