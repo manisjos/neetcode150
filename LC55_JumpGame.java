@@ -5,6 +5,7 @@ public class LC55_JumpGame {
 
         System.out.println("Can reach -> " + canJump(arr));
         System.out.println("Can reach diff array -> " + canJump(arr2));
+        System.out.println("Can reach diff array -> canJumpEasy " + canJumpEasy(arr2));
     }
 
     private static boolean canJump(int[] arr) {
@@ -18,10 +19,21 @@ public class LC55_JumpGame {
             maxReach = Math.max(maxReach, i + arr[i]);
 
             // early exit the checks, if we can already reach end
-            if(maxReach>=arr.length-1){
+            if (maxReach >= arr.length - 1) {
                 return true;
             }
         }
         return true; // this executes in [2,0,0], [1,1,1,1] kind of cases.
+    }
+
+    static boolean canJumpEasy(int[] arr) {
+        int mx = 0;
+        for (int i = 0; i < arr.length; ++i) {
+            if (mx < i) {
+                return false;
+            }
+            mx = Math.max(mx, i + arr[i]);
+        }
+        return true;
     }
 }
