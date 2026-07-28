@@ -33,4 +33,11 @@ public class LC128_LongestSequence {
         }
         return longestStreak;
     }
+
+
+    public boolean isPalin(String s){
+        if(s==null)
+            return false;
+
+    }
 }
