@@ -58,6 +58,8 @@ public class TopKFreq {
             freqMap.put(word, freqMap.getOrDefault(word, 0) + 1);
         }
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(freqMap.entrySet());
+
+        // sort entries by size of key, high size on top
         entries.sort((firstEntry, secondEntry) -> {
             if (!firstEntry.getValue().equals(secondEntry.getKey())) {
                 return secondEntry.getValue() - firstEntry.getValue();
@@ -66,9 +68,11 @@ public class TopKFreq {
         });
 
         List<String> answer = new ArrayList<>();
+        // store top k into a list
         for (int index = 0; index < k; index++) {
             answer.add(entries.get(index).getKey());
         }
+        // return list
         return answer;
     }
 }
