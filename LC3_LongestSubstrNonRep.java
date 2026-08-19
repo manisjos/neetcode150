@@ -1,18 +1,44 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class LC3_LongestSubstrNonRep {
     public static void main(String[] args) {
 
         String s = "abcabcbb";
+        String bb = "bb";
         System.out.println(lengthOfLongestSubstring(s)); // 3
         System.out.println(lengthOfLongestSubStr(s)); // 3
-        System.out.println("HashSet way: "+lengthOfLongestSubStrHashSet(s)); // 3
+        System.out.println("HashSet way: " + lengthOfLongestSubStrHashSet(s)); // 3
         hashMapWay(s);
         mostOptimalWay(s);
         lengthOfLongestSubstring(s);
+        System.out.println("bruteForce way " + lengthOfLongestSubstringBruteForce(s));
+        System.out.println("bruteForce way boob " + lengthOfLongestSubstringBruteForce(bb));
+
+        LLS(s);
+    }
+
+    static void LLS(String s) {
+//        if (s == null || s.isEmpty()) return 0;
+
+        int n = s.length();
+
+        int[] lastSeen = new int[128];
+        Arrays.fill(lastSeen, -1);
+
+        int maxLen = 0, left = 0;
+
+        for (int right = 0; right < n; right++) {
+            char curr = s.charAt(right);
+
+            // Direct jump: move 'Left' past the previous occurrence if its within current window
+            if (lastSeen[curr] >= left) {
+                left = lastSeen[curr] + 1;
+            }
+
+            lastSeen[curr] = right;
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        System.out.println("MaxLen is "+maxLen);
     }
 
     private static int lengthOfLongestSubStrHashSet(String s) {
@@ -31,7 +57,7 @@ public class LC3_LongestSubstrNonRep {
                 left++;
             }
             set.add(s.charAt(right));
-            maxLen = Math.max(maxLen,right-left+1);
+            maxLen = Math.max(maxLen, right - left + 1);
         }
         return maxLen;
     }
@@ -112,4 +138,28 @@ public class LC3_LongestSubstrNonRep {
         return max;
     }
 
+
+    public static int lengthOfLongestSubstringBruteForce(String s) {
+        if (s == null || s.isEmpty()) return 0;
+
+        int n = s.length();
+        int maxLength = 0;
+
+        for (int i = 0; i < n; i++) {
+            boolean[] visited = new boolean[128]; // Tracks seen ASCII characters
+
+            for (int j = i; j < n; j++) {
+                char currentChar = s.charAt(j);
+
+                // Duplicate found for this starting point i
+                if (visited[currentChar]) {
+                    break;
+                }
+
+                visited[currentChar] = true;
+                maxLength = Math.max(maxLength, j - i + 1);
+            }
+        }
+        return maxLength;
+    }
 }
