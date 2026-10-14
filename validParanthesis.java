@@ -5,12 +5,15 @@ import java.util.Stack;
 public class validParanthesis {
     public static void main(String[] args) {
         String s = "{[()]}";
-        System.out.println(isValidBruteForce(s));
-        System.out.println(isValidStack(s));
-        System.out.println(isValidStackHM(s));
+        String m="))((";
+        System.out.println(isValidBruteForce(m));
+        System.out.println(isValidStack(m));
+        System.out.println(isValidStackHM(m));
+        System.out.println(isValidStackHM(m));
     }
     static boolean isValidStackHM(String s){
         Map<Character,Character> map = new HashMap<>();
+        // adding ulta references
         map.put(')', '(');
         map.put(']', '[');
         map.put('}', '{');
@@ -19,7 +22,7 @@ public class validParanthesis {
 
         for (char ch : s.toCharArray()) {
 
-            if (!map.containsKey(ch)) {
+            if (!map.containsKey(ch)) { // if its not present in the map
 
                 stack.push(ch);
 

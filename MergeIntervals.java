@@ -19,12 +19,12 @@ public class MergeIntervals {
             return intervals;
         }
 
-        // Step1: Sort intervals based on start time
+        // Step1: Sort intervals based on "start" time
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
-        List<int[]> merged = new ArrayList<>();
+        List<int[]> merged = new ArrayList<>(); // List of 1D Array
 
         // Step2: Iterate and merge overlapping intervals
-        int[] currInterval = intervals[0];
+        int[] currInterval = intervals[0]; // 2D array to 1D array, we are making it easier
         merged.add(currInterval);
 
         for (int[] interval : intervals) {

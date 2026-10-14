@@ -20,7 +20,14 @@ public class TestClass {
 
         System.out.println("Stream Result : "+streamRes);
 
+        char ss=
+        s.chars().mapToObj(v->(char)v).collect((Collectors.groupingBy(
+                Function.identity(), LinkedHashMap::new,Collectors.counting()
+        ))).entrySet()
+                .stream().filter(e->e.getValue()==1).map(Map.Entry::getKey)
+                .skip(1).findFirst().orElse(null);
 
+        System.out.println("Stream Result ss : "+ss);
         char res = 0;
         int count = 0;
         char[] charArr = s.toCharArray();

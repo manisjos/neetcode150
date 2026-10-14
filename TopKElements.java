@@ -44,14 +44,14 @@ public class TopKElements {
     }
 
     static int[] kMostFrequent(int arr[], int k) {
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> freqMap = new HashMap<>();
 
         for (int val : arr) {
-            map.put(val, map.getOrDefault(val, 0) + 1);
+            freqMap.put(val, freqMap.getOrDefault(val, 0) + 1);
         }
 
-        // convert to list
-        List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(map.entrySet());
+        // convert the map to list
+        List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(freqMap.entrySet());
 
         // sort by frequency descending
         entries.sort((a, b) -> b.getValue() - a.getValue());

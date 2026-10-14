@@ -7,15 +7,16 @@ public class SubArrCount {
     }
 
     static int cntSubarrays(int[] arr, int k) {
-        int count=0;
-        int n=arr.length;
 
-        for (int i=0;i<n;i++){
-            int currSum=0;
+        int count = 0;
+        int n = arr.length;
 
-            for (int j=i;j<n;j++){
-                currSum+=arr[j];
-                if(currSum==k){
+        for (int i = 0; i < n; i++) {
+            int currSum = 0;
+
+            for (int j = i; j < n; j++) {
+                currSum += arr[j];
+                if (currSum == k) {
                     count++;
                 }
             }

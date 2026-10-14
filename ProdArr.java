@@ -66,6 +66,7 @@ public class ProdArr {
             result[i] = result[i - 1] * nums[i - 1];
         }
 
+
         // Step 2: Calculate suffix products on the fly
         // Multiply the prefix product by the product of all elements to the right
         int rightProduct = 1;
