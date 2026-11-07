@@ -29,10 +29,31 @@ public class LC56_MergeIntervals {
     }
 
     static int[][] merge(int[][] intervals) {
-        if (intervals == null || intervals.length <= 1) {
+        // Step 1: Sort by start time
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        List<int[]> result = new ArrayList<>();
+        // Step 2: Process each interval
+        for (int[] current : intervals) {
+            // First interval, or no overlap
+            if (result.isEmpty() ||
+                    current[0] > result.get(result.size() - 1)[1]) {
+                result.add(current);
+            } else {
+                // Overlap: merge into the last interval
+                int[] last = result.get(result.size() - 1);
+                last[1] = Math.max(last[1], current[1]);
+            }
+        }
+
+
+        return result.toArray(new int[result.size()][]);
+    }
+
+    static int[][] merged1(int[][] intervals){
+        if (intervals.length <= 1) {
             return intervals;
         }
-        // sorting by start time
+
         Arrays.sort(intervals, (a, b) ->
                 Integer.compare(a[0], b[0]));
 
@@ -49,6 +70,7 @@ public class LC56_MergeIntervals {
                         Math.max(merged[size - 1][1], current[1]);
             }
         }
+
         return Arrays.copyOf(merged, size);
     }
 }
