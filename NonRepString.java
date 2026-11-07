@@ -54,6 +54,21 @@ public class NonRepString {
 
     }
 
+    static char getThirdUniqueChar(String s){
+        return
+        s.chars().mapToObj(x->(char)x).collect(Collectors.groupingBy(
+                Function.identity(),
+                LinkedHashMap::new,
+                Collectors.counting()
+        )).entrySet()
+                .stream()
+                .filter(x->x.getValue()==1)
+                .map(Map.Entry::getKey)
+                .skip(2)
+                .findFirst()
+                .orElse('-');
+    }
+
     static char getFirstUnqChar(String s) {
         int[] freq = new int[26];
 
