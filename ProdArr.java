@@ -12,6 +12,10 @@ public class ProdArr {
         System.out.println(Arrays.toString(prodExceptSelf(new int[]{1, 2, 3, 4})));
         System.out.println("Second approach: ");
         System.out.println(Arrays.toString(productExceptSelfPS(new int[]{1, 2, 3, 4})));
+
+
+        System.out.println("15 Nov 26: ");
+        System.out.println(Arrays.toString(productOfArrayExceptSelf(new int[]{1, 2, 3, 4})));
     }
 
     static int[] prodArrBF(int arr[]) {
@@ -29,6 +33,29 @@ public class ProdArr {
             result[currIdx] = prod;
         }
         return result;
+    }
+
+    static int[] productOfArrayExceptSelf(int[] arr) {
+        int n = arr.length;
+        int leftArr[] = new int[n];
+        int rightArr[] = new int[n];
+        int resArr[] = new int[n];
+
+        leftArr[0] = 1;
+        for (int i = 1; i < n; i++) {
+            leftArr[i] = leftArr[i - 1] * arr[i - 1];
+        }
+
+        rightArr[n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--) {
+            rightArr[i] = rightArr[i + 1] * arr[i + 1];
+        }
+
+        for (int i = 0; i < n; i++) {
+            resArr[i] = leftArr[i] * rightArr[i];
+        }
+
+        return resArr;
     }
 
     static int[] moreOptimal(int arr[]) {
@@ -77,6 +104,7 @@ public class ProdArr {
 
         return result;
     }
+
 
     private static int[] productExceptSelfPS(int[] nums) {
         //prefix and suffix way - works fine and optimal way
