@@ -73,3 +73,17 @@ public class LC49_GroupAnagrams {
         return new ArrayList<>(mapOfListOfWords.values());
     }
 }
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String,List<String>> mapOfListOfWords = new HashMap<>();
+        for(String word:strs){
+            char[] charArr= word.toCharArray();
+            Arrays.sort(charArr);
+            String key = new String(charArr);
+            mapOfListOfWords.computeIfAbsent(key,
+                    k->new ArrayList<>()).add(word);
+        }
+        return new ArrayList<>(mapOfListOfWords.values());
+    }
+}
