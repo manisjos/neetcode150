@@ -45,17 +45,31 @@ public class LC49_GroupAnagrams {
             char[] chars = word.toCharArray();
             Arrays.sort(chars);
             String key = new String(chars);
-//            map.computeIfAbsent(key, k -> new ArrayList<>()).add(word);
-            // computeIfAbsent
-            // Get me the list for this key; if it doesn’t exist, make a new one. Then add this word to it.
+
+            // get the list, if absent create a new arrlist and add word to it.
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(word);
 
             // before jdk 8 way
-            if (!map.containsKey(key)) {
-                map.put(key, new ArrayList<>());
-            }
-            map.get(key).add(word);
+//            if (!map.containsKey(key)) {
+//                map.put(key, new ArrayList<>());
+//            }
+//            map.get(key).add(word);
 
         }
         return new ArrayList<>(map.values());
+    }
+
+    static List<List<String>> groupOfAnagramsV2(String[] arr) {
+        if (arr == null || arr.length == 0) return new ArrayList<>();
+        Map<String, List<String>> mapOfListOfWords = new HashMap<>();
+        for (String word : arr) {
+            char[] charArr = word.toCharArray();
+            Arrays.sort(charArr); // sort each unique word combo, to consider an anagram
+//            Now building the key(of map) from current word
+            String key = new String(charArr); // key built, now using it to add to map
+            mapOfListOfWords.computeIfAbsent(key, k -> new ArrayList<>()).add(word);
+            // get the list, if absent create a new arrlist and add word to it.
+        }
+        return new ArrayList<>(mapOfListOfWords.values());
     }
 }
