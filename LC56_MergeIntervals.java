@@ -6,12 +6,49 @@ import java.util.List;
 public class LC56_MergeIntervals {
     public static void main(String[] args) {
         int intervals[][] = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        int intervals2[][] = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
 
 
-        int[][] res = merge(intervals);
-        for (int[] interval : res) {
+//        int[][] res = merge(intervals);
+//        for (int[] interval : res) {
+//            System.out.print("[" + interval[0] + " , " + interval[1] + "] ");
+//        }
+
+
+        int[][] output = mergeIntervalsNew(intervals2);
+        for (int[] interval : output) {
             System.out.print("[" + interval[0] + " , " + interval[1] + "] ");
         }
+    }
+
+    static int[][] mergeIntervalsNew(int[][] intervals) {
+        if (intervals.length <= 1) {
+            return intervals;
+        }
+        // sort by element 0 of 2d arr
+        Arrays.sort(intervals, (arr1, arr2) -> Integer.compare(arr1[0], arr2[0]));
+
+        // using a List of arrs since we dont know, new possible size of output arr
+        List<int[]> output_arr = new ArrayList<>();
+        int[] curr_int = intervals[0];
+        output_arr.add(curr_int);
+
+        // processing each ints
+        for (int[] ivls : intervals) {
+            int curr_begin = curr_int[0];
+            int curr_end = curr_int[1];
+
+            int next_begin = ivls[0];
+            int next_end = ivls[1];
+
+            if (curr_end >= next_begin) {
+                curr_int[1] = Math.max(curr_end, next_end);
+            } else {
+                curr_int = ivls;
+                output_arr.add(curr_int);
+            }
+        }
+        return output_arr.toArray(new int[output_arr.size()][]);
     }
 
     public static int[][] mergeIntervals(int[][] intervals) {
@@ -49,7 +86,7 @@ public class LC56_MergeIntervals {
         return result.toArray(new int[result.size()][]);
     }
 
-    static int[][] merged1(int[][] intervals){
+    static int[][] merged1(int[][] intervals) {
         if (intervals.length <= 1) {
             return intervals;
         }
