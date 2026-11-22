@@ -8,21 +8,18 @@ public class LC347_TOP_K {
         System.out.println(Arrays.toString(topK_Via_Heap(new int[]{1, 1, 1, 2, 2, 3}, 2)));
         System.out.println("Via Bucket Sort");
         System.out.println(Arrays.toString(topK_Via_BucketSort(new int[]{1, 1, 1, 2, 2, 3}, 2)));
-        System.out.println("Via Heap Approach");
+        System.out.println("Via Heap Approach 2");
         System.out.println(Arrays.toString(topkViaHeapApproachAgain(new int[]{1, 1, 1, 2, 2, 3}, 2)));
     }
 
     static int[] topkViaHeapApproachAgain(int arr[], int k) {
 
         Map<Integer, Integer> freqMap = new HashMap<>();
-
         for (int currentNumber : arr) {
             freqMap.put(currentNumber, freqMap.getOrDefault(currentNumber, 0) + 1);
         }
 
-        PriorityQueue<Map.Entry<Integer, Integer>> minHeap =
-                new PriorityQueue<>((a, b) -> a.getKey() - b.getKey());
-
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
 
         for (Map.Entry<Integer, Integer> eachEntry : freqMap.entrySet()) {
             minHeap.add(eachEntry);
