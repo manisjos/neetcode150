@@ -8,6 +8,36 @@ public class LC347_TOP_K {
         System.out.println(Arrays.toString(topK_Via_Heap(new int[]{1, 1, 1, 2, 2, 3}, 2)));
         System.out.println("Via Bucket Sort");
         System.out.println(Arrays.toString(topK_Via_BucketSort(new int[]{1, 1, 1, 2, 2, 3}, 2)));
+        System.out.println("Via Heap Approach");
+        System.out.println(Arrays.toString(topkViaHeapApproachAgain(new int[]{1, 1, 1, 2, 2, 3}, 2)));
+    }
+
+    static int[] topkViaHeapApproachAgain(int arr[], int k) {
+
+        Map<Integer, Integer> freqMap = new HashMap<>();
+
+        for (int currentNumber : arr) {
+            freqMap.put(currentNumber, freqMap.getOrDefault(currentNumber, 0) + 1);
+        }
+
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap =
+                new PriorityQueue<>((a, b) -> a.getKey() - b.getKey());
+
+
+        for (Map.Entry<Integer, Integer> eachEntry : freqMap.entrySet()) {
+            minHeap.add(eachEntry);
+            // if the size of minHeap, goes above K limit, just remove as well
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        int[] resultingArray = new int[k];
+        for (int i = k - 1; i >= 0; i--) {
+            resultingArray[i] = minHeap.poll().getKey(); // fetching out Key out of minHeap
+        }
+
+        return resultingArray;
     }
 
     static int[] topK_Via_BucketSort(int[] arr, int k) {
@@ -45,12 +75,13 @@ public class LC347_TOP_K {
     }
 
 
-
     public static ArrayList<Integer> topKFrequent_Naive(int[] nums, int rank) {
+        // counted freq in map==> move freqMap into List of [] arrays to sort them ==> converting back to ArrayList and returning uptill the k rank
+
         Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
-//            map.put(num,map.getOrDefault(num,0)+1);
-            map.merge(num, 1, Integer::sum);
+            map.put(num, map.getOrDefault(num, 0) + 1);
+//            map.merge(num, 1, Integer::sum);
         }
         ArrayList<int[]> freq = new ArrayList<>();
         // moving the o/p to array list of integer arrays
